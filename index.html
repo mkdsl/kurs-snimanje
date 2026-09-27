@@ -475,17 +475,30 @@ kbd {
 }
 
 .col {
-  max-width: var(--content-max);
+  max-width: none;
   min-width: 0;
   padding-top: var(--sp-6);
 }
 
+/* --- DIJAGRAM IZLAZI IZ MERE TEKSTA (Zorin nalaz O2 iz drugog toma; isti
+   kvar stoji i ovde, 16 od 17 crteža)
+   Crtež od 960 jedinica sedeo je u koloni teksta od 780px: 708px platna
+   naspram traženih 812px (960 × 11/13, prag čitljivosti) → 82px odsečeno,
+   na svakoj širini ekrana.
+   Mera se skida sa .col i vraća na blokove koji je stvarno trebaju. Celu
+   širinu kolone mreže uzimaju .fig i .wide — crteži i široke tabele.
+   Mera čitanja nije dirana: ona je na 54ch, ne na --content-max. */
+.col > *:not(.sec) { max-width: var(--content-max); }
+.sec { max-width: none; }
+.sec > *:not(.fig):not(.wide) { max-width: var(--content-max); }
+
 /* široki blokovi smeju da izađu iz kolone teksta */
 /* .wide se centrira u odnosu na kolonu teksta i „izlazi" u prazninu desno/levo */
 .wide {
-  width: min(var(--bleed-max), calc(100vw - 2 * var(--sp-5)));
-  margin-left: calc((100% - min(var(--bleed-max), 100vw - 2 * var(--sp-5))) / 2);
-  margin-right: auto;
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  max-width: none;
 }
 
 .scroll-x {
@@ -1327,7 +1340,7 @@ input[type="range"]::-moz-range-thumb {
   :root { --rail-w: 200px; --rail-gap: 40px; --bleed-max: 100%; }
 }
 
-@media (max-width: 1079px) {
+@media (max-width: 1199px) {
   .shell {
     grid-template-columns: minmax(0, 1fr);
     padding-inline: var(--sp-6);
@@ -1697,7 +1710,7 @@ table.cmp > caption, .cmp > table > caption {
    19. TELEFON — mete od 44px, vertikalni sadržaj, prelom Podsetnika
    ========================================================================== */
 
-@media (max-width: 1079px) {
+@media (max-width: 1199px) {
   /* Zorin nalaz O7: traka od 104 linka koja se lomi u dve kolone nije lista
      koja se skenira odozgo nadole. Ispod 1080px sadržaj je panel, ne traka,
      i otvara ga dugme SADRŽAJ iz lepljivog zaglavlja. */
@@ -2321,7 +2334,9 @@ table.cmp > caption, .cmp > table > caption {
       <p class="hero__sub">
         Kamera ne pravi sliku — svetlo je pravi, kamera je samo zapisuje. Ovo je
         referentni priručnik u brojevima: šta se podešava, koliko iznosi i šta se
-        time gubi.
+        time gubi. Ovo je prvi tom — drugi,
+        <a href="jezik-filma.html">Jezik filma i fotografije</a>, govori
+        šta kadar znači i šta nastaje kad se jedan kadar stavi pored drugog.
       </p>
       <div class="hero__stats">
         <span class="stat"><b>12</b> sekcija</span>
@@ -9160,6 +9175,7 @@ table.cmp > caption, .cmp > table > caption {
     <footer class="footer">
       <p>Kamera u video produkciji — sadržaj: Kaja Kadrić · dizajn: Zoki Piksel · implementacija: Jova jQuery.</p>
       <p>Sve vrednosti su polazne, ne konačne. Na terenu odlučuje waveform, ne tabela.</p>
+      <p>Drugi tom: <a href="jezik-filma.html">Jezik filma i fotografije — priča, slika, montaža</a>.</p>
     </footer>
 
   </main>
