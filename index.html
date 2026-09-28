@@ -2065,6 +2065,17 @@ table.cmp > caption, .cmp > table > caption {
   max-width: 54ch;
 }
 
+
+/* Nasleđena greška, nađena merenjem trećeg toma na 375px: .rail dobija
+   margin-inline: -32px u bloku „BREAKPOINTI" (≤1199px), gde .shell zaista
+   ima 32px ispune. Ispod 599px .shell pada na 24px, a negativna margina
+   ostaje 32px — 8px po strani izlazi van ekrana i cela stranica dobija
+   vodoravno pomeranje čim se fioka SADRŽAJ otvori. Sa zatvorenom fiokom se
+   ne vidi, pa je i preživelo. Izmereno: scrollWidth 383 → 375. */
+@media (max-width: 599px) {
+  .rail { margin-inline: calc(-1 * var(--sp-5)); }
+}
+
 </style>
 </head>
 <body>
@@ -2336,7 +2347,9 @@ table.cmp > caption, .cmp > table > caption {
         referentni priručnik u brojevima: šta se podešava, koliko iznosi i šta se
         time gubi. Ovo je prvi tom — drugi,
         <a href="jezik-filma.html">Jezik filma i fotografije</a>, govori
-        šta kadar znači i šta nastaje kad se jedan kadar stavi pored drugog.
+        šta kadar znači i šta nastaje kad se jedan kadar stavi pored drugog;
+        treći, <a href="glas-i-izvodjenje.html">Glas, govor i izvođenje pred
+        kamerom</a>, govori šta radi čovek koji je u tom kadru.
       </p>
       <div class="hero__stats">
         <span class="stat"><b>12</b> sekcija</span>
@@ -9176,6 +9189,7 @@ table.cmp > caption, .cmp > table > caption {
       <p>Kamera u video produkciji — sadržaj: Kaja Kadrić · dizajn: Zoki Piksel · implementacija: Jova jQuery.</p>
       <p>Sve vrednosti su polazne, ne konačne. Na terenu odlučuje waveform, ne tabela.</p>
       <p>Drugi tom: <a href="jezik-filma.html">Jezik filma i fotografije — priča, slika, montaža</a>.</p>
+      <p>Treći tom: <a href="glas-i-izvodjenje.html">Glas, govor i izvođenje pred kamerom — čovek koji govori</a>.</p>
     </footer>
 
   </main>

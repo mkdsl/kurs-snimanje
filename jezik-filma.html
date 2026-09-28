@@ -2412,6 +2412,17 @@ h2, h3 { overflow-wrap: break-word; }
   .fig-opis { margin-top: 0; }
 }
 
+
+/* Nasleđena greška, nađena merenjem trećeg toma na 375px: .rail dobija
+   margin-inline: -32px u bloku „BREAKPOINTI" (≤1199px), gde .shell zaista
+   ima 32px ispune. Ispod 599px .shell pada na 24px, a negativna margina
+   ostaje 32px — 8px po strani izlazi van ekrana i cela stranica dobija
+   vodoravno pomeranje čim se fioka SADRŽAJ otvori. Sa zatvorenom fiokom se
+   ne vidi, pa je i preživelo. Izmereno: scrollWidth 383 → 375. */
+@media (max-width: 599px) {
+  .rail { margin-inline: calc(-1 * var(--sp-5)); }
+}
+
 </style>
 </head>
 <body>
@@ -2756,7 +2767,7 @@ h2, h3 { overflow-wrap: break-word; }
     <div class="hero">
       <p class="kicker">Drugi tom · video produkcija</p>
       <h1>Jezik filma i fotografije</h1>
-      <p class="hero__sub">Priča, slika, montaža. Šta kadar <em>znači</em> i šta nastaje kad se jedan kadar stavi pored drugog. Prvi tom — <a href="index.html">Kadar i ekspozicija</a> — govori kako se kadar snima; ovaj govori zašto se gleda.</p>
+      <p class="hero__sub">Priča, slika, montaža. Šta kadar <em>znači</em> i šta nastaje kad se jedan kadar stavi pored drugog. Prvi tom — <a href="index.html">Kadar i ekspozicija</a> — govori kako se kadar snima; ovaj govori zašto se gleda. Treći — <a href="glas-i-izvodjenje.html">Glas, govor i izvođenje pred kamerom</a> — govori šta radi čovek koji je u kadru.</p>
       <div class="hero__stats">
         <span class="stat"><b>15</b> sekcija</span>
         <span class="stat"><b>141</b> podsekcija</span>
@@ -10722,6 +10733,7 @@ doba (frejmova na 25p) = 1500 / BPM</code></pre>
       <p><strong>Jezik filma i fotografije</strong> — drugi tom biblioteke za video produkciju.</p>
       <p>Sekcije <span class="mono">00</span>–<span class="mono">08</span>: Siniša „Sine" Scenario · sekcije <span class="mono">09</span>–<span class="mono">13</span>: Kaja Kadrić · sekcija <span class="mono">14</span>: Dule Dubina · dijagrami: Zoki Piksel · izrada stranice: Jova jQuery.</p>
       <p>Prvi tom: <a href="index.html">Kadar i ekspozicija — priručnik u brojevima za snimanje</a>.</p>
+      <p>Treći tom: <a href="glas-i-izvodjenje.html">Glas, govor i izvođenje pred kamerom — čovek koji govori</a>.</p>
       <p class="muted">Jedan fajl, bez zavisnosti. Radi offline, otvara se dvoklikom.</p>
     </footer>
 
